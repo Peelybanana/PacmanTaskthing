@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090b18" />
+  <title>Task Run — Earn your next level</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <nav class="topbar">
+      <a class="brand" href="#top" aria-label="Task Run home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i></span>
+        <span>task<span>run</span></span>
+      </a>
+      <div class="nav-actions">
+        <div class="streak-counter" aria-label="Daily streak"><img src="pixelfire.jpg" alt=""><strong id="navStreakCount">0</strong><span>day streak</span></div>
+        <button class="nav-link shop-link" id="openShop" type="button"><span class="nav-icon">●</span> Pellet shop</button>
+        <button class="nav-link" id="openChecklist" type="button"><span class="nav-icon">✓</span> My checklist</button>
+        <button class="avatar" type="button" aria-label="Your profile">TR</button>
+      </div>
+    </nav>
+
+    <main id="top">
+      <section class="today-section section-wrap">
+        <div class="checklist-streak"><img src="pixelfire.jpg" alt=""><span><strong id="checklistStreakCount">0</strong> day streak</span></div>
+        <div class="today-header"><div><p class="eyebrow">TODAY'S RUN</p><h2>Here is your next move</h2></div><button class="outline-button" id="addTask" type="button">Add a task</button></div>
+        <div class="task-layout">
+          <div class="task-list" id="taskList"></div>
+          <aside class="score-card"><div class="score-label">ALL-TIME HIGH SCORE</div><div class="score-value" id="highScore">000000</div><div class="score-divider"></div><div class="score-meta"><span>PELLETS EATEN</span><strong id="totalPellets">000</strong></div><div class="score-meta"><span>ROUNDS PLAYED</span><strong id="roundsPlayed">00</strong></div><div class="mini-maze"><span class="mini-pacman"></span><span class="mini-ghost"></span><i></i><i></i><i></i></div></aside>
+        </div>
+      </section>
+
+      <section class="dashboard section-wrap">
+        <div class="section-heading"><div><p class="eyebrow">HOW IT WORKS</p><h2>Small wins build real momentum.</h2></div><span class="heading-rule"></span></div>
+        <div class="loop-grid">
+          <article class="loop-card card-yellow"><div class="card-number">01</div><div class="loop-icon check-icon">✓</div><h3>Pick a task</h3><p>Start with one thing that matters today.</p></article>
+          <div class="loop-arrow">→</div>
+          <article class="loop-card card-pink"><div class="card-number">02</div><div class="loop-icon play-icon">▶</div><h3>Play a round</h3><p>Complete it to unlock your arcade break.</p></article>
+          <div class="loop-arrow">→</div>
+          <article class="loop-card card-blue"><div class="card-number">03</div><div class="loop-icon star-icon">✦</div><h3>Build your streak</h3><p>Come back tomorrow and do it again.</p></article>
+        </div>
+      </section>
+
+    </main>
+
+    <footer><span>taskrun / build your momentum one task at a time</span><span class="footer-right">Keep going, one task at a time.</span></footer>
+  </div>
+
+  <div class="modal-backdrop" id="checklistModal" hidden>
+    <div class="modal checklist-modal" role="dialog" aria-modal="true" aria-labelledby="checklistTitle">
+      <button class="modal-close" type="button" aria-label="Close">×</button>
+      <p class="eyebrow">YOUR CHECKLIST</p><h2 id="checklistTitle">Set up your daily run.</h2><p class="modal-intro">Add the everyday wins you want to turn into game time.</p>
+      <div class="task-input-row"><input id="taskInput" type="text" maxlength="60" placeholder="e.g. Tidy my desk" /><button id="saveTask" class="primary-button" type="button">Add <span>+</span></button></div>
+      <div class="modal-task-list" id="modalTaskList"></div>
+      <button class="done-button" id="closeChecklist" type="button">Save checklist <span>→</span></button>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="shopModal" hidden>
+    <div class="modal shop-modal" role="dialog" aria-modal="true" aria-labelledby="shopTitle">
+      <button class="modal-close" id="closeShop" type="button" aria-label="Close">×</button>
+      <p class="eyebrow">PELLET ECONOMY</p><h2 id="shopTitle">Spend your pellet points.</h2>
+      <p class="modal-intro">Spend pellets on permanent upgrades or arm a challenge for your next round.</p>
+      <div class="shop-balance"><span>YOUR PELLET POINTS</span><strong id="shopBalance">0</strong></div>
+      <div class="shop-items" id="shopItems"></div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="gameModal" hidden>
+    <div class="modal game-modal" role="dialog" aria-modal="true" aria-labelledby="gameTitle">
+      <button class="modal-close" id="closeGame" type="button" aria-label="Close">×</button>
+      <div class="game-topline"><div><p class="eyebrow">UNLOCKED ROUND</p><h2 id="gameTitle">Collect the pellets and stay alive.</h2></div><div class="game-score"><span>SCORE</span><strong id="gameScore">000000</strong></div></div>
+      <p class="game-task" id="gameTask">You earned this break. Good luck!</p>
+      <canvas id="gameCanvas" width="640" height="390" aria-label="Playable arcade maze game"></canvas>
+      <div class="game-countdown" id="gameCountdown" hidden aria-live="assertive"></div>
+      <div class="game-controls"><span>ARROW KEYS / WASD TO MOVE</span><span><b id="gamePellets">0</b> / 100 PELLETS · <b id="gamePelletPoints">0</b> POINTS</span></div>
+      <div class="game-result" id="gameResult" hidden></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
